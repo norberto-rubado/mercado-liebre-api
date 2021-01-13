@@ -46,6 +46,8 @@ var upload = multer({
 
 // ************       Routes       ************
 
-router.get('/',productsAPIController.index); /* GET - All products - index */
+router.get('/latest',productsAPIController.latest); /* GET - All products - index */
+
+router.get('/offers',productsAPIController.offers); /* GET - All products - index */
 
 module.exports = router;

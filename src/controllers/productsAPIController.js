@@ -9,53 +9,46 @@ const {Op} = require('sequelize')
 
 module.exports = {
 	
-	// Root - Show all products
-	async index (req, res, next) {
+	// Root - Show latest products
+	async latest (req, res, next) {
 
-/*      let category = req.params.category */
+        products = await Product.findAll({
+            order: [["createdAt", "DESC" ]],
+            limit : 5
+        }).then (products => {
 
-        let category = "latest"
+            let respuesta = {
+                meta : {
+                    status: 200,
+                    total: products.length
+                },
+                products: products
+            }  
 
-        console.log(category,req.params)
+            res.json (respuesta)
+        })
 
-        if (category == "latest") {
-            products = await Product.findAll({
-                order: [["createdAt", "DESC" ]],
-                limit : 5
-            }).then (products => {
+    },
+    
+    	// Root - Show all products
+	async offers (req, res, next) {
 
-                let respuesta = {
-                    meta : {
-                        status: 200,
-                        total: products.length
-                    },
-                    products: products
-                }  
+        products = await Product.findAll({
+            where: {discount:{[Op.gte]: 50}},
+            order: [["createdAt", "DESC" ]]
+        }).then (products => {
 
-                res.json (respuesta)
-            })
+            let respuesta = {
+                meta : {
+                    status: 200,
+                    total: products.length
+                },
+                products: products
+            }  
 
-        } else {
-            if (category == "offers") {
-                products = await Product.findAll({
-                    where: {discount:{[Op.gte]: 50}},
-                    order: [["createdAt", "DESC" ]]
-                }).then (products => {
+            res.json (respuesta)
+        })
 
-                    let respuesta = {
-                        meta : {
-                            status: 200,
-                            total: products.length
-                        },
-                        products: products
-                    }  
+    }
 
-                    res.json (respuesta)
-                })
-
-            }
-
-        }
-       
-    }    
 }
