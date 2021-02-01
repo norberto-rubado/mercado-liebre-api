@@ -65,6 +65,13 @@ hr {
 }
 
 
+.latest-products, 
+.offers-products  {
+  width: 100%;
+  display:flex;
+  flex-wrap: wrap;
+}
+
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;

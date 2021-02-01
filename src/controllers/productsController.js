@@ -31,6 +31,21 @@ module.exports = {
 		
 	},
 
+	// Admin - Show all products
+	admin (req, res, next) {
+
+		const categories = Category.findAll();
+		let products = Product.findAll(
+			{ include: [{ association: 'brand' }] })
+
+		Promise.all([categories, products])
+		.then(([categories, products]) => {
+			res.render('products/product-admin-form', { categories, products })
+		})	
+		.catch(e => console.log(e));
+		
+	},
+
 	// Detail - Detail from one product
 	detail (req, res) {
 		Product.findByPk(req.params.id)

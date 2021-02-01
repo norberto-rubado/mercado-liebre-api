@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head', {title: 'Administrar Producto', image: ''}) %>
+<!--     <%#- include("../partials/head.ejs", {title: "Reegalo - Administrar" }) %> -->
+<!--         <link rel="stylesheet" href="/stylesheets/app.css"> -->
+        <link rel="stylesheet" href="/css/product-admin.css">
+</head>
+
+<body>
+
+	<!-- Header -->
+	<%- include('../partials/headerNavbar') %>
+	<!-- /Header -->
+
+    <!-- Header del Sitio -->
+
+<!--     <%#- include("../partials/header.ejs") %> -->
+
+        <main class="principal">
+            <div class="container-crear-regalo"><a href="/products/create"><i class="fas fa-plus-square"></i>
+                    Crear producto</a>
+            </div>
+
+            <% categories.forEach (function(item_category) { %>
+
+                <div class="container-categoria">
+                    <section class="indicador">
+                        <h2 class="detalle_producto">‏‏‎ ‎‏‏‎<%= item_category.name %>
+                        </h2>
+                    </section>
+
+                    <div class="container-productos">
+
+                        <% products.forEach (function(item) { %>
+                            <% if (item.categoryId==item_category.id) { %>
+                                <div class="container-producto">
+                                    <section class="product-box">
+                                        <a href="/products/detail/<%= item.id %>">
+                                            <section class="product-box-img-data">
+                                                <figure class="product-box_image">
+                                                    <img src="/images/products/<%= item.image %>"
+                                                        alt="imagen de producto">
+                                                </figure>
+                                                <article class="product-box_data_adm">
+                                                    <p class="product-name">
+                                                        <%= item.name.trim() %>
+                                                    </p>
+                                                    <p class="product-status">
+                                                        <%= item.brand.name.trim() %>
+                                                    </p>
+                                                    <section class="product-price">
+                                                        <h3>$ <%= item.price.trim() %>
+                                                        </h3>
+                                                        <span>
+                                                            <%= item.discount %> % OFF
+                                                        </span>
+                                                    </section>
+                                                </article>
+                                            </section>
+                                            <section class="botones">
+                                                <form action="/products/<%= item.id%>/edit" method="get"
+                                                    class="form-producto">
+                                                    <button type="submit" class="boton-guardar">Editar</button>
+
+                                                </form>
+                                                <form action="/products/<%= item.id %>/?_method=DELETE"
+                                                    method="POST" class="form-producto">
+                                                    <button type="submit"
+                                                        class="boton-eliminar">Eliminar</button>
+                                                </form>
+                                            </section>
+
+                                        </a>
+                                    </section>
+                                </div>
+                            <% } %>
+                        <% }) %>
+                    </div>
+                </div>
+                <% }) %>
+
+        </main>
+
+    <!-- Footer del Sitio -->
+
+<!--     <%#- include("../partials/footer.ejs") %> -->
+    <%- include('../partials/footer') %>
+
+</body>
+
+</html>

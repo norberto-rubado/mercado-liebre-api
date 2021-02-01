@@ -49,6 +49,9 @@ var upload = multer({
 router.get('/page/:page', productsController.index); /* GET - All products - index */
 router.get('/detail/:id', productsController.detail); /* GET - Product detail - show*/
 
+/*** ADMIN ONE PRODUCTS ***/ 
+router.get('/admin', authMiddleware, productsController.admin); /* GET - Form to admin - admin */
+
 /*** CREATE ONE PRODUCT ***/ 
 router.get('/create', authMiddleware, productsController.create); /* GET - Form to create - create */
 router.post('/', authMiddleware, upload.single('image'), validator.createProduct, productsController.store); /* POST - Store in DB - store*/
