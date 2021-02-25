@@ -160,7 +160,7 @@
     padding: 1%;
 }
 
-.form-producto {
+.form-producto, .form-producto-delete {
     width: 50%;
     height:100%;
     display: flex;
@@ -336,7 +336,7 @@
   padding: 1%;
 }
 
-.form-producto {
+.form-producto, .form-producto_delete {
   width: 50%;
   height:50px;
   display: flex;

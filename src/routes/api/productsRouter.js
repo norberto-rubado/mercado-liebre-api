@@ -13,6 +13,7 @@ const validator = require('../../middlewares/validator');
 // ************ Controller Require ************
 
 const productsAPIController = require('../../controllers/productsAPIController');
+const { fileURLToPath } = require('url');
 
 // ************  Multer Config  ***************
 
@@ -43,11 +44,16 @@ var upload = multer({
    }
 });
 
-
 // ************       Routes       ************
 
-router.get('/latest',productsAPIController.latest); /* GET - All products - index */
+router.get('/latest',productsAPIController.latest); 
 
-router.get('/offers',productsAPIController.offers); /* GET - All products - index */
+router.get('/offers',productsAPIController.offers); 
+
+router.post('/', authMiddleware, upload.single('image'), validator.createProduct, productsAPIController.store);
+
+router.patch('/:id', sellerMiddleware, upload.any(), validator.editProduct, productsAPIController.update)
+
+router.delete('/:id', sellerMiddleware, productsAPIController.destroy); 
 
 module.exports = router;

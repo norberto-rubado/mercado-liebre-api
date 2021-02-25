@@ -3,7 +3,7 @@
 <!-- Include Head -->
 <%- include('../partials/head', {title: 'Editando: ' + product.name, image: product.image}) %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.1.17/validator.min.js"></script>
-<script src="/js/products.js"></script>
+<script src="/js/products_update.js"></script>
 <body>
 	<!-- Header -->
 	<%- include('../partials/headerNavbar') %>
@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<div class="col-12">
-			<form action="/products/<%= product.id ? product.id : id %>?_method=PATCH" method="POST" enctype="multipart/form-data">
+			<form id="formulario-producto" action="/products/<%= product.id ? product.id : id %>?_method=PATCH" method="POST" enctype="multipart/form-data">
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="name" class="form-label">Nombre del producto:</label>
@@ -85,7 +85,7 @@
 						<p id="brand-error" class="error"><%= typeof errors == 'undefined' ? '' : errors.category ? errors.category.msg : '' %></p>
 					</div>
 					<div class="col-12 col-md-6">
-						<label for="description" class="form-label">Descipción:</label>
+						<label for="description" class="form-label">Descripción:</label>
 						<textarea name="description" id="description"
 							class="form-input"><%= product.description %></textarea>
 						<p id="description-error" class="error"><%= typeof errors == 'undefined' ? '' : errors.description ? errors.description.msg : '' %></p>

@@ -107,8 +107,12 @@ module.exports = {
 	// Update - Method to update
 	update (req, res) {
 
+		console.log("paso por el update no api")
+
 		const errors = validationResult(req);
 
+		console.log(errors)
+		
 		if (errors.isEmpty()) {
 
 			Product.findByPk(req.params.id)
@@ -159,6 +163,8 @@ module.exports = {
 
 	// Delete - Delete one product from DB
 	destroy (req, res) {
+
+		console.log("paso no por la api")
 		Product.destroy({
 			where: {
 				id: req.params.id

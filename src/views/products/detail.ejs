@@ -2,6 +2,7 @@
 <html lang="es">
 <!-- Include Head -->
 <%- include('../partials/head', {title: product.name, image: product.image}) %>
+<script src="/js/products_detail.js"></script>
 <body>
 	<!-- Header -->
 	<%- include('../partials/headerNavbar') %>
@@ -56,7 +57,7 @@
 							<a href="/products/<%= product.id %>/edit" class="action-button edit">EDITAR PRODUCTO</a>
 
 							<!-- Eliminar el producto -->
-							<form action="/products/<%= product.id %>?_method=DELETE" method="POST" style="display: inline-flex">
+							<form id="formulario_producto_delete" action="/products/<%= product.id %>?_method=DELETE" method="POST" style="display: inline-flex">
 								<button type="submit" class="action-button delete">ELIMINAR</button>
 							</form>
 						<% } else { %>
