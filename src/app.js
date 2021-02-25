@@ -45,12 +45,14 @@ const productsRouter = require('./routes/productsRouter'); // Rutas /products
 const usersRouter = require('./routes/usersRouter'); // Rutas /user
 
 const productsAPIRouter = require('./routes/api/productsRouter'); // Rutas / api / products
+const itemsRouterAPI = require('./routes/api/itemsRouter')
 
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
 app.use('/users', usersRouter);
 
 app.use('/api/products', productsAPIRouter);
+app.use('/api/items', itemsRouterAPI);
 
 // ************ DON'T TOUCH FROM HERE ************
 // ************ catch 404 and forward to error handler ************
