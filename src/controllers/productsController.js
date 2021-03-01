@@ -107,11 +107,7 @@ module.exports = {
 	// Update - Method to update
 	update (req, res) {
 
-		console.log("paso por el update no api")
-
 		const errors = validationResult(req);
-
-		console.log(errors)
 		
 		if (errors.isEmpty()) {
 
@@ -164,7 +160,6 @@ module.exports = {
 	// Delete - Delete one product from DB
 	destroy (req, res) {
 
-		console.log("paso no por la api")
 		Product.destroy({
 			where: {
 				id: req.params.id

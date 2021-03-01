@@ -144,14 +144,12 @@ window.addEventListener("load",function() {
         if (
             (!validator.isEmpty(valorImage) && window.location.pathname.includes("create")) || 
             (window.location.pathname.includes("edit"))) {
-                console.log("imagen ok ")
             if (validator.isEmpty(valorImage)) {
                 valorImage = 0
             }
             setSuccess(image, image_error, valorImage);
             return true
         } else {
-            console.log("imagen mal ")
             setError(image, image_error, 'Debe seleccionar como minimo una imagen');
             return false
         }
@@ -175,9 +173,8 @@ window.addEventListener("load",function() {
 
 /* comente el alta de productos por api por problemas por la imagen */
 
-/*      form.addEventListener("submit",function(event) {
+     form.addEventListener("submit",function(event) {
 
-        console.log("paso por el submit")
         validarName()
         validarBrand() 
         validarPrice() 
@@ -185,8 +182,6 @@ window.addEventListener("load",function() {
         validarCategory() 
         validarImage() 
         validarDescription() 
-
-        console.log("10",product)
 
         if (product.name === "" ||
             product.brand === "" ||
@@ -196,11 +191,11 @@ window.addEventListener("load",function() {
             product.image === "" ||
             product.description === "") {
             event.preventDefault()
-        }   */
+        }  
 
-/*         codigo para actualizar via API */
+/*      codigo para actualizar via API */
         
-/*          event.preventDefault()
+         event.preventDefault()
 
         if (product.name === "" ||
             product.brand === "" ||
@@ -214,15 +209,15 @@ window.addEventListener("load",function() {
 
             let input = document.querySelector('input[type="file"]') 
 
-            let data = new FormData()  */
+            let data = new FormData() 
 
 /*          for (const file of input.files) { 
                 data.append('files',file,file.name) 
             }  */
 
-/*          data.append('file', input.files[0]) 
+            data.append('image', input.files[0]) 
 
-            console.log(input.files[0])
+/*          console.log(input.files[0]) */
 
             data.append('name', product.name)
             data.append('brand', product.brand)
@@ -230,8 +225,6 @@ window.addEventListener("load",function() {
             data.append('discount', product.discount)
             data.append('category', product.category)
             data.append('description', product.description)
-
-            console.log(data)
 
             fetch ('http://localhost:3000/api/products', {
             method : 'POST',
@@ -242,6 +235,7 @@ window.addEventListener("load",function() {
                 form.name.value = ""
                 form.brand.value = ""
                 form.price.value = ""
+                form.image.value = ""
                 form.discount.value = ""
                 form.category.value = ""
                 form.description.value = ""
@@ -249,7 +243,7 @@ window.addEventListener("load",function() {
             .catch(error => {console.log(error)})
         } 
 
-    })  */
+    }) 
 
     function setError(input, input_error, error) {
         input.style.borderColor = "tomato"

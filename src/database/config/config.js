@@ -2,8 +2,8 @@ require('dotenv').config();
 
 module.exports = {
   "development": {
-    "username": "norberto",
-    "password": "anaadr02",
+    "username": "root",
+    "password": "",
     "database": "mercadoliebre",
     "host": "127.0.0.1",
     "dialect": "mysql",

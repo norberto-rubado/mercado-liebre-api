@@ -143,19 +143,15 @@ window.addEventListener("load",function() {
         function validarImage() {
             let valorImage = image.value.trim()
 
-            console.log(window.location.pathname)
-    
             if (
                 (!validator.isEmpty(valorImage) && window.location.pathname.includes("create")) || 
                 (window.location.pathname.includes("edit")))  {
-                    console.log("imagen ok ")
                 if (validator.isEmpty(valorImage)) {
                     valorImage = 0
                 }
                 setSuccess(image, image_error, valorImage);
                 return true
             } else {
-                console.log("imagen mal ")
                 setError(image, image_error, 'Debe seleccionar como minimo una imagen');
                 return false
             }
@@ -179,7 +175,6 @@ window.addEventListener("load",function() {
     
         form.addEventListener("submit",function(event) {
     
-            console.log("paso por aca update")
             validarName()
             validarBrand() 
             validarPrice() 
@@ -187,8 +182,6 @@ window.addEventListener("load",function() {
             validarCategory() 
             validarImage() 
             validarDescription() 
-    
-            console.log("10",product)
     
             if (product.name === "" ||
                 product.brand === "" ||
@@ -224,7 +217,7 @@ window.addEventListener("load",function() {
 
                 let data = new FormData()
 
-                data.append('file', input.files[0])
+                data.append('image', input.files[0])
     
                 data.append('name', product.name)
                 data.append('brand', product.brand)

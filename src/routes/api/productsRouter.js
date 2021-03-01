@@ -19,7 +19,7 @@ const { fileURLToPath } = require('url');
 
 var storage = multer.diskStorage({
    destination: function (req, file, cb) {
-      cb(null, path.resolve(__dirname, '../../public/images/products'))
+      cb(null, path.resolve(__dirname, '../../../public/images/products'))
    },
    filename: function (req, file, cb) {
       cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
@@ -52,7 +52,7 @@ router.get('/offers',productsAPIController.offers);
 
 router.post('/', authMiddleware, upload.single('image'), validator.createProduct, productsAPIController.store);
 
-router.patch('/:id', sellerMiddleware, upload.any(), validator.editProduct, productsAPIController.update)
+router.patch('/:id', sellerMiddleware, upload.single('image'), validator.editProduct, productsAPIController.update)
 
 router.delete('/:id', sellerMiddleware, productsAPIController.destroy); 
 

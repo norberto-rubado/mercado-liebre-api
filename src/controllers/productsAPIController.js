@@ -57,7 +57,6 @@ module.exports = {
         const errors = validationResult(req);
 
 		if(errors.isEmpty()){
-            console.log("llego aca 1")
 			const _body = req.body;
 			_body.price = Number(req.body.price);
 			_body.discount = Number(req.body.discount);
@@ -85,7 +84,6 @@ module.exports = {
 		const errors = validationResult(req);
 
 		if (errors.isEmpty()) {
-
 			Product.findByPk(req.params.id)
 				.then(product => {
 
@@ -116,8 +114,6 @@ module.exports = {
 		} else {
 			const categories = Category.findAll();
 			const brands = Brand.findAll();
-
-			console.log(req.body)
 	
 			Promise.all([categories, brands])
 				.then(([categories, brands]) => {
